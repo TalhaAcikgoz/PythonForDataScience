@@ -3,6 +3,7 @@ from pandas import DataFrame
 
 
 def load(path: str) -> DataFrame:
+    """ Load a CSV file into a DataFrame."""
     try:
         open(path, 'r')
         assert path.endswith('.csv'), f"File extension is not .csv: {path}"

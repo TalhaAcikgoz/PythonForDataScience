@@ -3,6 +3,7 @@ from pandas import DataFrame
 
 
 def load(path: str) -> DataFrame:
+    """ Load a CSV file into a DataFrame."""
     try:
         open(path, 'r')
         assert path.endswith('.csv'), f"File extension is not .csv: {path}"
@@ -14,4 +15,10 @@ def load(path: str) -> DataFrame:
         exit(1)
     except AssertionError as e:
         print(f" {e}")
+        exit(1)
+    except pd.errors.ParserError:
+        print("Error parsing file")
+        exit(1)
+    except pd.errors.EmptyDataError:
+        print("Data is empty")
         exit(1)
